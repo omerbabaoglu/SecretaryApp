@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "wtaP4zkpD0voHE1ciWoxkkreVRLBC3fMEKCat2uajjKWrceAcXxX8hSGk68ax+zn3qfs+0Uk91UXvKVvy4VAMQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\omer-\\source\\repos\\SecretaryApp\\SecretaryApp\\SecretaryApp\\SecretaryApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\omer-\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\xamarin.essentials\\1.6.0-rc1\\xamarin.essentials.1.6.0-rc1.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+  ],
+  "logs": []
+}

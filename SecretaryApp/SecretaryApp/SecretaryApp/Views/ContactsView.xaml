@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:SecretaryApp.ViewModels"
+             x:Class="SecretaryApp.Views.ContactsView">
+    <ContentPage.BindingContext>
+        <vm:ContactsViewModel></vm:ContactsViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Text="{Binding SearchKey}"  SearchCommand="{Binding searchcommand}" ></SearchBar>
+            <ListView x:Name="cntlist" HasUnevenRows="True" ItemsSource="{Binding cntcollect}" IsPullToRefreshEnabled="True" SelectedItem="{Binding selecteditem}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding DisplayName}" Detail="{Binding Phones[0].PhoneNumber}"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
