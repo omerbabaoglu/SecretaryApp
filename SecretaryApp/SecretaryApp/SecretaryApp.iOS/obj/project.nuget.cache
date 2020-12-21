@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Bgbg0W9v9AcZZIkUyFQ155+Zd6IG+YbnFMwooZrV/D1wmNniVst4jgxBBhI8ybBWhfPyOX1qIfx9hRo7gb0H5Q==",
+  "dgSpecHash": "IaOrmIAJjbcByDq9TsxTQpQ8l1+Gdw/dsXzu9Wsel60vyTCHF7tyxDDD5bzybbr7wbLIZ1dBAlxcQfy6MbjVig==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer-\\source\\repos\\SecretaryApp\\SecretaryApp\\SecretaryApp.iOS\\SecretaryApp.iOS.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,8 @@
     "C:\\Users\\omer-\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\omer-\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Users\\omer-\\.nuget\\packages\\xamarin.essentials\\1.6.0-rc1\\xamarin.essentials.1.6.0-rc1.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\xamarin.forms.openwhatsapp\\1.0.1\\xamarin.forms.openwhatsapp.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

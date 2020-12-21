@@ -1,4 +1,6 @@
-﻿using MvvmHelpers.Commands;
+﻿using Android.Content.Res;
+using MvvmHelpers.Commands;
+using SecretaryApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,23 +11,30 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 
+
 namespace SecretaryApp.ViewModels
 {
   public class ContactsViewModel : INotifyPropertyChanged
     {
        private ObservableCollection<Contact> contactsCollect = new ObservableCollection<Contact>();
-        private Contact SelectedItem;
+      
+        
+        private Contact selectedItem;
 
-        public Contact selecteditem
+        public Contact Selecteditem
         {
-          get  { return SelectedItem; }
-          set  { SelectedItem = value; OnPropertyChanged("selecteditem"); }
+          get  { return selectedItem; }
+          set  { selectedItem = value; OnPropertyChanged("Selecteditem"); }
         }
 
 
 
         private string searchkey;
         public ICommand searchcommand { get; }
+
+        public ICommand MessageCommand { get; }
+
+        public ICommand CallCommand { get; }
         
 
         public string SearchKey
@@ -44,8 +53,15 @@ namespace SecretaryApp.ViewModels
 
         public  ContactsViewModel()
         {
-           GetContact();
+            GetContact();
             searchcommand = new AsyncCommand(searchtexthcanged);
+            MessageCommand = new AsyncCommand(messagecommand);
+            CallCommand = new AsyncCommand(MakeCall);
+        }
+
+        private async Task messagecommand()
+        {
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new SelectionPage(Selecteditem));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -86,6 +102,37 @@ namespace SecretaryApp.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+        public async Task MakeCall()
+        {
+            PlacePhoneCall(selectedItem.Phones[0].PhoneNumber);
+        }
+
+
+        
+            public void PlacePhoneCall(string number)
+            {
+                try
+                {
+                    PhoneDialer.Open(number);
+                }
+                catch (ArgumentNullException anEx)
+                {
+                    // Number was null or white space
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    // Phone Dialer is not supported on this device.
+                }
+                catch (Exception ex)
+                {
+                    // Other error has occurred.
+                }
+            }
+        
+
+
 
 
     }

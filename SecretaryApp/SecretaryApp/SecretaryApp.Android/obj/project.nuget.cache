@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rvRIeipSxcf5985klhquGPUkL1yMGv8WYbOBDNHGFZBY3Ny46YC4NzdEjIkFzkffSalXGMuhxORzB8mtu39EXw==",
+  "dgSpecHash": "YWeKCtrHzvz8a2rf1AhnvIBt7HAxwZqR8zO5wyPVe8KmzUS/qOy/RAzxo0T0HsOkif1gVkCYlbrBWWMHh5LE5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer-\\source\\repos\\SecretaryApp\\SecretaryApp\\SecretaryApp.Android\\SecretaryApp.Android.csproj",
   "expectedPackageFiles": [
@@ -45,7 +45,8 @@
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.support.versionedparcelable\\28.0.0.3\\xamarin.android.support.versionedparcelable.28.0.0.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.support.viewpager\\28.0.0.3\\xamarin.android.support.viewpager.28.0.0.3.nupkg.sha512",
     "C:\\Users\\omer-\\.nuget\\packages\\xamarin.essentials\\1.6.0-rc1\\xamarin.essentials.1.6.0-rc1.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512",
+    "C:\\Users\\omer-\\.nuget\\packages\\xamarin.forms.openwhatsapp\\1.0.1\\xamarin.forms.openwhatsapp.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }
