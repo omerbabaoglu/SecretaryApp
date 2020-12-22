@@ -10,9 +10,9 @@
         <StackLayout>
             <Label x:Name="lblName" Text="{Binding labelName, Mode=TwoWay}"/>
             <Label x:Name="lblNumber" Text="{Binding labelNumber, Mode=TwoWay}"/>
-            <Label x:Name="lblMail" Text="{Binding labelMail, Mode=TwoWay}"></Label>
+            <Label x:Name="lblMail" Text="{Binding LabelMail, Mode=TwoWay}"></Label>
             <Entry x:Name="Message_Entry" Placeholder="Mesajınızı Giriniz" Text="{Binding MessageEntry, Mode=TwoWay}" ></Entry>
-            <Entry x:Name="Mailsubject" Placeholder="Mailiniz için başlık girin" Text="{Binding MailEntry}"></Entry>
+            <Entry x:Name="Mailsubject" Placeholder="Mailiniz için başlık girin" Text="{Binding MailEntry, Mode=TwoWay}"></Entry>
             <Button x:Name="SmsButton" Text="Send Sms" Command="{Binding smsCommand}"/>
             <Button x:Name="MailButton" Text="Send Mail" Command="{Binding MailCommand}"/>
             <Button x:Name="WpButton" Text="Send Whatsapp Message" Command="{Binding WpCommand}"/>

@@ -8,23 +8,25 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Text="{Binding SearchKey}"  SearchCommand="{Binding searchcommand}" ></SearchBar>
-            <ListView x:Name="cntlist" HasUnevenRows="True" ItemsSource="{Binding cntcollect}" IsPullToRefreshEnabled="True" SelectedItem="{Binding Selecteditem}" >
+            <SearchBar Text="{Binding SearchKey}"    ></SearchBar>
+            <ListView x:Name="cntlist" HasUnevenRows="True" ItemsSource="{Binding sortedContacts, Mode=TwoWay}"  SelectedItem="{Binding Selecteditem}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="LightBlue" Padding="2" Margin="1">
-                                <Label BackgroundColor="LightSlateGray" Text="{Binding DisplayName}" TextColor="Black" FontSize="20" FontAttributes="Bold"></Label>
-                                <Label BackgroundColor="LightSlateGray" Text="{Binding Phones[0].PhoneNumber}" TextColor="Black" FontSize="15"></Label>
-                                <Label BackgroundColor="LightSlateGray" Text="{Binding Emails[0].EmailAddress}" TextColor="Black" FontSize="15"></Label>
+                            <StackLayout BackgroundColor="LightBlue" Margin="3">
+                                <StackLayout Margin="10">
+                                    <Label Text="{Binding DisplayName}" TextColor="DodgerBlue" FontSize="18" FontAttributes="Bold" ></Label>
+                                    <Label Text="{Binding Phones[0].PhoneNumber}" TextColor="Black" FontSize="13" ></Label>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Ara" Command="{Binding CallCommand}"></Button>
-                <Button Text="Mesaj Gönder" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand"></Button>
+            <StackLayout Orientation="Horizontal" Margin="0">
+                <Button Text="Ara" Command="{Binding CallCommand}" Background="LightBlue" Margin="5" WidthRequest="100"></Button>
+                <Label Text="{Binding Selecteditem.DisplayName}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  TextColor="DodgerBlue" FontAttributes="Bold" FontSize="15"></Label>
+                <Button Text="Mesaj Gönder" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand" BackgroundColor="LightBlue" Margin="5" WidthRequest="100"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

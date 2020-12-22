@@ -18,6 +18,8 @@ namespace SecretaryApp.ViewModels
         private string messageEntry;
         private string mailEntry;
         public List<string> MailList = new List<string>();
+
+        
       
         
         public ICommand smsCommand { get; }
@@ -39,16 +41,16 @@ namespace SecretaryApp.ViewModels
             set { messageEntry = value; OnPropertyChanged("MessageEntry"); }
         }
 
-        public string labelMail
+        public string LabelMail
         {
             get { return labelmail; }
-            set { labelmail = value; OnPropertyChanged("labelMail"); }
+            set { labelmail = value; OnPropertyChanged("LabelMail"); MailList.Add(LabelMail); }
         }
 
         public string labelName
         {
             get { return labelname; }
-            set { labelname = value;  OnPropertyChanged("labelName"); }
+            set { labelname = value;  OnPropertyChanged("labelName");  }
         }
 
         public string labelNumber
@@ -61,7 +63,7 @@ namespace SecretaryApp.ViewModels
             smsCommand = new AsyncCommand(SendSms);
             WpCommand = new AsyncCommand(SendWpMessage);
             MailCommand = new AsyncCommand(SendEmail);
-            MailList.Add(labelMail);
+            
             
         }
         
@@ -77,6 +79,7 @@ namespace SecretaryApp.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        
 
 
         public async Task SendSms()

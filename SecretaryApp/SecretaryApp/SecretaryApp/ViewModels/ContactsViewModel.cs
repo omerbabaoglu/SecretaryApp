@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,17 +15,32 @@ using Xamarin.Essentials;
 
 namespace SecretaryApp.ViewModels
 {
-  public class ContactsViewModel : INotifyPropertyChanged
+    public class ContactsViewModel : INotifyPropertyChanged
     {
-       private ObservableCollection<Contact> contactsCollect = new ObservableCollection<Contact>();
-      
-        
+        public ObservableCollection<Contact> contactsCollect = new ObservableCollection<Contact>();
+
+
+        public ObservableCollection<Contact> SortedContacts = new ObservableCollection<Contact>();
+
+        //public ObservableCollection<Contact> SortedContacts
+        //{
+        //    get { return sortedContacts; }
+        //    set { sortedContacts = value; OnPropertyChanged("SortedContacts"); }
+        //}
+
+
         private Contact selectedItem;
 
         public Contact Selecteditem
         {
-          get  { return selectedItem; }
-          set  { selectedItem = value; OnPropertyChanged("Selecteditem"); }
+            get { return selectedItem; }
+            set { selectedItem = value; OnPropertyChanged("Selecteditem"); }
+        }
+
+        public ObservableCollection<Contact> sortedContacts
+        {
+            get { return SortedContacts; }
+            set { SortedContacts = value; OnPropertyChanged("sortedContacts"); }
         }
 
 
@@ -35,12 +51,12 @@ namespace SecretaryApp.ViewModels
         public ICommand MessageCommand { get; }
 
         public ICommand CallCommand { get; }
-        
+
 
         public string SearchKey
         {
             get { return searchkey; }
-            set { searchkey = value; OnPropertyChanged("Searchkey"); }
+            set { searchkey = value; SearchPropertyChanged("Searchkey"); }
         }
         public ObservableCollection<Contact> cntcollect
         {
@@ -51,10 +67,10 @@ namespace SecretaryApp.ViewModels
             }
         }
 
-        public  ContactsViewModel()
+        public ContactsViewModel()
         {
             GetContact();
-            searchcommand = new AsyncCommand(searchtexthcanged);
+           // searchcommand = new AsyncCommand(searchtexthcanged);
             MessageCommand = new AsyncCommand(messagecommand);
             CallCommand = new AsyncCommand(MakeCall);
         }
@@ -68,7 +84,7 @@ namespace SecretaryApp.ViewModels
 
         public async Task GetContact()
         {
-            contactsCollect.Clear();
+            //contactsCollect.Clear();
             try
             {
                 // cancellationToken parameter is optional
@@ -78,22 +94,37 @@ namespace SecretaryApp.ViewModels
                 if (contacts == null)
                     return;
 
-                foreach (var contact in contacts)
-                    if (SearchKey != null){ if (contact.DisplayName.ToLower().Contains(SearchKey.ToLower())) { contactsCollect.Add(contact); } }
-                    else { contactsCollect.Add(contact); }
-                    
-                    
+
+
+
+                foreach (var contact in contacts) { contactsCollect.Add(contact); }
+                //if (SearchKey != null && SearchKey != "")
+                //{
+                //    foreach (var contact in contacts)
+                //    {
+                //        { if (contact.DisplayName.ToLower().Contains(SearchKey.ToLower())) { contactsCollect.Add(contact); } }
+                //    }
+                //}
+                //else 
+                //{
+                //    foreach (var contact in contacts) { contactsCollect.Add(contact); }
+                //}
             }
             catch (Exception ex)
             {
                 // Handle exception here.
             }
+
+            foreach (var item in contactsCollect)
+            {
+                SortedContacts.Add(item);
+            }
+
+
+
         }
 
-       async Task searchtexthcanged()
-        {
-            GetContact();
-        }
+       
 
 
 
@@ -103,6 +134,40 @@ namespace SecretaryApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void SearchPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+            SortedContacts.Clear();
+            if (SearchKey != null)
+            {
+                foreach (var item in contactsCollect)
+                {
+                    if (item.DisplayName.ToLower().Contains(SearchKey.ToLower())) { SortedContacts.Add(item); }
+                }
+
+            }
+            else if (SearchKey == "")
+            {
+
+                foreach (var item in contactsCollect)
+                {
+                    SortedContacts.Add(item);
+                }
+
+
+
+            }
+            else {
+                foreach (var item in contactsCollect)
+                {
+                    SortedContacts.Add(item);
+                }
+            }
+        }
+
+
 
         public async Task MakeCall()
         {
@@ -110,27 +175,27 @@ namespace SecretaryApp.ViewModels
         }
 
 
-        
-            public void PlacePhoneCall(string number)
+
+        public void PlacePhoneCall(string number)
+        {
+            try
             {
-                try
-                {
-                    PhoneDialer.Open(number);
-                }
-                catch (ArgumentNullException anEx)
-                {
-                    // Number was null or white space
-                }
-                catch (FeatureNotSupportedException ex)
-                {
-                    // Phone Dialer is not supported on this device.
-                }
-                catch (Exception ex)
-                {
-                    // Other error has occurred.
-                }
+                PhoneDialer.Open(number);
             }
-        
+            catch (ArgumentNullException anEx)
+            {
+                // Number was null or white space
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Phone Dialer is not supported on this device.
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+        }
+
 
 
 

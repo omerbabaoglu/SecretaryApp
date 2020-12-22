@@ -16,13 +16,19 @@ namespace SecretaryApp.Views
         
         public ContactsView()
         {
+           BindingContext = new ContactsViewModel();
             InitializeComponent();
 
+           
+            
         }
-
+        
         private void Button_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SelectionPage(cntlist.SelectedItem as Contact));
+           
         }
+        
+       
     }
 }
