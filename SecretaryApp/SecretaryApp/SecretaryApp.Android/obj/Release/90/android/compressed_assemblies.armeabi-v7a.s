@@ -82,7 +82,7 @@
 
 	/* 6: SecretaryApp.dll */
 	/* uncompressed_file_size */
-	.long	28672
+	.long	31744
 	/* loaded */
 	.byte	0
 	/* data */

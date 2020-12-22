@@ -20,13 +20,18 @@ namespace SecretaryApp.ViewModels
         public ObservableCollection<Contact> contactsCollect = new ObservableCollection<Contact>();
 
 
-        public ObservableCollection<Contact> SortedContacts = new ObservableCollection<Contact>();
+        public ObservableCollection<Contact> FilteredContacts = new ObservableCollection<Contact>();
 
-        //public ObservableCollection<Contact> SortedContacts
-        //{
-        //    get { return sortedContacts; }
-        //    set { sortedContacts = value; OnPropertyChanged("SortedContacts"); }
-        //}
+        public List<Contact> sortedContacts = new List<Contact>();
+
+
+        public List<Contact> SortedContacts
+        {
+            get { return sortedContacts; }
+            set { sortedContacts = value; OnPropertyChanged("SortedContacts"); }
+        }
+
+    
 
 
         private Contact selectedItem;
@@ -37,10 +42,10 @@ namespace SecretaryApp.ViewModels
             set { selectedItem = value; OnPropertyChanged("Selecteditem"); }
         }
 
-        public ObservableCollection<Contact> sortedContacts
+        public ObservableCollection<Contact> filteredContacts
         {
-            get { return SortedContacts; }
-            set { SortedContacts = value; OnPropertyChanged("sortedContacts"); }
+            get { return FilteredContacts; }
+            set {   FilteredContacts = value; OnPropertyChanged("filteredContacts"); }
         }
 
 
@@ -70,9 +75,10 @@ namespace SecretaryApp.ViewModels
         public ContactsViewModel()
         {
             GetContact();
-           // searchcommand = new AsyncCommand(searchtexthcanged);
+           
             MessageCommand = new AsyncCommand(messagecommand);
             CallCommand = new AsyncCommand(MakeCall);
+         
         }
 
         private async Task messagecommand()
@@ -84,7 +90,7 @@ namespace SecretaryApp.ViewModels
 
         public async Task GetContact()
         {
-            //contactsCollect.Clear();
+            
             try
             {
                 // cancellationToken parameter is optional
@@ -98,17 +104,7 @@ namespace SecretaryApp.ViewModels
 
 
                 foreach (var contact in contacts) { contactsCollect.Add(contact); }
-                //if (SearchKey != null && SearchKey != "")
-                //{
-                //    foreach (var contact in contacts)
-                //    {
-                //        { if (contact.DisplayName.ToLower().Contains(SearchKey.ToLower())) { contactsCollect.Add(contact); } }
-                //    }
-                //}
-                //else 
-                //{
-                //    foreach (var contact in contacts) { contactsCollect.Add(contact); }
-                //}
+            
             }
             catch (Exception ex)
             {
@@ -117,8 +113,12 @@ namespace SecretaryApp.ViewModels
 
             foreach (var item in contactsCollect)
             {
-                SortedContacts.Add(item);
+                FilteredContacts.Add(item);
             }
+
+            SortedContacts = FilteredContacts.OrderBy(x => x.DisplayName).ToList();
+
+
 
 
 
@@ -139,13 +139,16 @@ namespace SecretaryApp.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
-            SortedContacts.Clear();
+            FilteredContacts.Clear();
             if (SearchKey != null)
             {
                 foreach (var item in contactsCollect)
                 {
-                    if (item.DisplayName.ToLower().Contains(SearchKey.ToLower())) { SortedContacts.Add(item); }
+                    if (item.DisplayName.ToLower().Contains(SearchKey.ToLower())) { FilteredContacts.Add(item); }
                 }
+
+                SortedContacts = FilteredContacts.OrderBy(x => x.DisplayName).ToList();
+
 
             }
             else if (SearchKey == "")
@@ -153,8 +156,9 @@ namespace SecretaryApp.ViewModels
 
                 foreach (var item in contactsCollect)
                 {
-                    SortedContacts.Add(item);
+                    FilteredContacts.Add(item);
                 }
+                SortedContacts = FilteredContacts.OrderBy(x => x.DisplayName).ToList();
 
 
 
@@ -162,8 +166,13 @@ namespace SecretaryApp.ViewModels
             else {
                 foreach (var item in contactsCollect)
                 {
-                    SortedContacts.Add(item);
+                    FilteredContacts.Add(item);
                 }
+
+
+                SortedContacts = FilteredContacts.OrderBy(x => x.DisplayName).ToList();
+                
+
             }
         }
 

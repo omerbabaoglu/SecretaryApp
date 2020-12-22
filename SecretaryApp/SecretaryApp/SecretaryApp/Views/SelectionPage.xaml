@@ -2,20 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:SecretaryApp.ViewModels"
-             x:Class="SecretaryApp.Views.SelectionPage">
+             x:Class="SecretaryApp.Views.SelectionPage" Title="Selection Page" BackgroundColor="LightBlue">
     <ContentPage.BindingContext>
         <viewModel:SelectionPageViewModel></viewModel:SelectionPageViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="lblName" Text="{Binding labelName, Mode=TwoWay}"/>
-            <Label x:Name="lblNumber" Text="{Binding labelNumber, Mode=TwoWay}"/>
-            <Label x:Name="lblMail" Text="{Binding LabelMail, Mode=TwoWay}"></Label>
-            <Entry x:Name="Message_Entry" Placeholder="Mesajınızı Giriniz" Text="{Binding MessageEntry, Mode=TwoWay}" ></Entry>
-            <Entry x:Name="Mailsubject" Placeholder="Mailiniz için başlık girin" Text="{Binding MailEntry, Mode=TwoWay}"></Entry>
-            <Button x:Name="SmsButton" Text="Send Sms" Command="{Binding smsCommand}"/>
-            <Button x:Name="MailButton" Text="Send Mail" Command="{Binding MailCommand}"/>
-            <Button x:Name="WpButton" Text="Send Whatsapp Message" Command="{Binding WpCommand}"/>
+        <StackLayout Margin="15">
+            
+            <Label x:Name="lblName" Text="{Binding labelName, Mode=TwoWay}"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" FontSize="25" TextColor="Black"  />
+            <Label x:Name="lblNumber" Text="{Binding labelNumber, Mode=TwoWay}" BackgroundColor="Transparent"  HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="Black" />
+            <Label x:Name="lblMail" Text="{Binding LabelMail, Mode=TwoWay}"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" FontSize="25" TextColor="Black"></Label>
+            <Editor x:Name="Message_Entry" Placeholder="Mesajınızı Giriniz" Text="{Binding MessageEntry, Mode=TwoWay}" BackgroundColor="LightSalmon" ></Editor>
+            <Entry x:Name="Mailsubject" Placeholder="Mailiniz için konu giriniz" Text="{Binding MailEntry, Mode=TwoWay}" BackgroundColor="LightSalmon" ></Entry>
+
+                <StackLayout VerticalOptions="EndAndExpand" Margin="30">
+            <Button x:Name="SmsButton" Text="Send Sms" Command="{Binding smsCommand}" Margin="5" CornerRadius="5" BackgroundColor="LightGray"  />
+                <Button x:Name="MailButton" Text="Send Mail" Command="{Binding MailCommand}" Margin="5" CornerRadius="5" BackgroundColor="LightGray"/>
+                <Button x:Name="WpButton" Text="Send Whatsapp Message" Command="{Binding WpCommand}" Margin="5" CornerRadius="5" BackgroundColor="LightGray"/>
+                </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

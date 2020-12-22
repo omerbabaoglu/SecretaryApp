@@ -8,8 +8,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Text="{Binding SearchKey}"    ></SearchBar>
-            <ListView x:Name="cntlist" HasUnevenRows="True" ItemsSource="{Binding sortedContacts, Mode=TwoWay}"  SelectedItem="{Binding Selecteditem}" >
+            <SearchBar Text="{Binding SearchKey}" Placeholder="Kişi listenizde arama yapın.."></SearchBar>
+            <ListView x:Name="cntlist" HasUnevenRows="True" ItemsSource="{Binding SortedContacts, Mode=TwoWay}"  SelectedItem="{Binding Selecteditem}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
